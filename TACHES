@@ -1,0 +1,11 @@
+FAITES
+------
+
+À FAIRE
+-------
+
+- Prévoir un paramètre SSH (donc le test sur le répertoire de destination \
+ est un serveur SSH, et donc il faut "pinger")
+- Faire un test pour vérifier que le répertoire d'origine ne contient pas \
+ celui de destination (redondance)
+- Autre ?

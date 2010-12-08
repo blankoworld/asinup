@@ -1,0 +1,70 @@
+  ######################
+ ## PROGRAMME ASINUP ##
+######################
+
+### À PROPOS ###
+
+ASINUP signifie 'Archivage ou Synchronisation d'Informations Numériques Utilisable Périodiquement'.
+
+Il a été initialement crée pour permettre la sauvegarde périodique des dossiers sur lesquels nous travaillons journalièrement.
+
+### PRÉ - REQUIS ###
+
+Le script requiert la présence des logiciels suivants :
+- sh (le shell installé dans toute distribution qui se respecte)
+- rsync
+- tar
+- gunzip
+
+### DESCRIPTION ###
+
+Ce script permet de faire une sauvegarde de ses fichiers de deux manières : 
+- Soit en archive
+- Soit par synchronisation
+
+Il a été principalement crée pour la sauvegarde fréquente d'un jeu de fichiers données, dans lesquels nous travaillons, en vue d'avoir à la fois un historique de la journée passée, mais aussi d'éviter les erreurs de traitement de fichiers et d'éventuelles pertes (le déclencheur de cette volonté du script a été le bug suivant : http://sourceforge.net/tracker/index.php?func=detail&aid=2233912&group_id=143967&atid=757280).
+
+### INSTALLATION ###
+
+Une simple copie dans notre dossier personnel suffit.
+
+### UTILISATION ###
+
+Le script s'utilise de cette manière :
+
+##--[[ Synchronisation ]]--##
+
+sh ~/asinup.sh origine destination
+
+Ceci aura pour effet de synchroniser le contenu de l'origine vers la destination, si des dossiers/fichiers ont été supprimés dans l'origine, ils le seront dans la destination.
+
+Le résultat est stocké dans : destination/fichiers
+
+##--[[ Archivage ]]--##
+
+sh ~/asinup.sh -a origine destination
+
+Ceci aura pour effet d'archiver en tar.gz le contenu de l'origine vers la destination, tel quel, avec pour identifiant l'heure de sauvegarde.
+
+Le résultat est stocké dans : destination/archives
+
+Cela écrase les fichiers de même identifiant. Donc on ne peut pas avoir plus de 24 archives dans le dossier.
+
+##--[[ Automatiser le script ]]--##
+
+Il est possible d'automatiser la tâche du script, il a été fait pour ça d'ailleurs, à l'aide des tâches cron.
+
+Faites crontab -e, en tant qu'utilisateur normal (si le script se trouve dans votre répertoire home, à la base) et ajoutez par exemple les lignes suivantes pour faire une synchronisation toutes les 15 minutes, avec une archive toutes les heures : 
+
+*/15 * * * 1-5       sh ~/asinup.sh ~/Saisonnier/ /mnt/archives/
+* 8-19/1 * * 1-5     sh ~/asinup.sh -a ~/Saisonnier/ /mnt/archives/
+
+Ceci sera fait du lundi au vendredi inclus.
+
+### IMPORTANT ###
+
+Si origine prend de la place, veillez à avoir un minimum de 25 fois la taille d'origine comme espace dans destination.
+
+### SOURCES ###
+
+Les sources du programme peuvent être récupérées sur http://git.dossmann.net/
