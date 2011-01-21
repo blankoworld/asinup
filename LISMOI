@@ -56,8 +56,8 @@ Il est possible d'automatiser la tâche du script, il a été fait pour ça d'ai
 
 Faites crontab -e, en tant qu'utilisateur normal (si le script se trouve dans votre répertoire home, à la base) et ajoutez par exemple les lignes suivantes pour faire une synchronisation toutes les 15 minutes, avec une archive toutes les heures : 
 
-*/15 * * * 1-5       sh ~/asinup.sh ~/Saisonnier/ /mnt/archives/
-* 8-19/1 * * 1-5     sh ~/asinup.sh -a ~/Saisonnier/ /mnt/archives/
+*/15   *    * * 1-5  sh ~/asinup.sh ~/Saisonnier/ /mnt/archives/
+0    8-19/1 * * 1-5  sh ~/asinup.sh -a ~/Saisonnier/ /mnt/archives/
 
 Ceci sera fait du lundi au vendredi inclus.
 
