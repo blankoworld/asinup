@@ -1,0 +1,64 @@
+  ###########################
+ ## PROGRAMME CRON_ASINUP ##
+###########################
+
+### À PROPOS ###
+
+CRON_ASINUP fonctionne avec le script ASINUP. Je vous invite à découvrir ASINUP via le site suivant : 
+
+    http://git.dossmann.net/scripts/asinup.git/ 
+
+Il a été initialement crée pour permettre la sauvegarde périodique des dossiers sur lesquels nous travaillons journalièrement.
+
+### PRÉ - REQUIS ###
+
+Le script requiert la présence des logiciels suivants (et de leurs dépendances) : 
+- asinup.sh
+
+### DESCRIPTION ###
+
+Ce script permet de faciliter la mise en tâche CRON d'un ensemble de fichiers à sauver à l'aide du script 'asinup.sh'.
+
+### INSTALLATION ###
+
+Il faut procéder ainsi : 
+
+    mkdir ~/bin
+    cp asinup.sh ~/bin
+    cp cron_asinup.sh ~/bin
+    cp fic_cron_asinup.liste ~/bin
+    chmod +x ~/bin/asinup.sh
+    chmod +x ~/bin/cron_asinup.sh
+
+Et le tour est joué ;)
+
+### UTILISATION ###
+
+Éditez le fichier ~/bin/fic_cron_asinup.liste précédemment copié et modifiez le. Pour comprendre le fonctionnement de ce fichier, voici quelques explications :
+- Chaque ligne sera utilisée comme paramètres du script 'asinup.sh'
+- Dans chaque ligne on a 2 éléments : 
+  - le dossier à sauver
+  - le répertoire de destination qui contiendra une arborescence de sauvegarge (Cf. Fichier 'LISMOI' du script 'asinup.sh')
+
+Voici un exemple de ligne : 
+
+    /home/olivier/personnel/:/srv/archives/olivier/personnel/
+
+ATTENTION : n'oubliez pas les '/' à la fin de vos adresse !
+ATTENTION : Mettez TOUJOURS des adresses absolues. C'est à dire le chemin entier des répertoires d'origine et de destination !
+
+Comme ce script est prévu pour fonctionner en tant que tâche cron, il faut éditer crontab : 
+
+    crontab -e
+
+Puis ajouter les lignes suivantes : 
+
+    LANG=fr_FR.utf8
+    */15   *    *   *  1-5    cd ~/bin && bash ~/bin/cron_asinup.sh
+    0    8-19/1 *   *  1-5    cd ~/bin && bash ~/bin/cron_asinup.sh -a
+
+Ceci va permettre de : 
+- Lancer une sauvegarde par synchronisation toutes les 15 minutes (*/15) du lundi au vendredi (1-5)
+- Lancer une sauvegarde par archivage toutes les heures (/1) entre 8H00 et 19H00 (8-19) du lundi au vendredi (1-5)
+
+Adaptez selon besoins.
