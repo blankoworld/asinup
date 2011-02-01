@@ -8,7 +8,7 @@
 ## VARIABLES
 ###
 
-$USER=olivier
+$USER='olivier'
 script="/home/$USER/bin/asinup.sh"
 liste="/home/$USER/bin/fic_cron_asinup.liste"
 

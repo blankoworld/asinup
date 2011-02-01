@@ -47,6 +47,10 @@ Voici un exemple de ligne :
 ATTENTION : n'oubliez pas les '/' à la fin de vos adresse !
 ATTENTION : Mettez TOUJOURS des adresses absolues. C'est à dire le chemin entier des répertoires d'origine et de destination !
 
+Éditez le fichier ~/bin/cron_asinup.sh et changez la variable $USER avec votre identifiant de session : 
+
+    $USER='olivier'
+
 Comme ce script est prévu pour fonctionner en tant que tâche cron, il faut éditer crontab : 
 
     crontab -e
