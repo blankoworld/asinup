@@ -61,10 +61,15 @@ Faites crontab -e, en tant qu'utilisateur normal (si le script se trouve dans vo
 
 Ceci sera fait du lundi au vendredi inclus.
 
+Note : Si vous avez trop de fichiers à sauver, utilisez le script 'cron_asinup.sh' fourni dans le répertoire 'cron'. Lisez plus particulièrement le fichier 'LISMOI'.
+
 ### IMPORTANT ###
 
 Si origine prend de la place, veillez à avoir un minimum de 25 fois la taille d'origine comme espace dans destination.
 
 ### SOURCES ###
 
-Les sources du programme peuvent être récupérées sur http://git.dossmann.net/
+Les sources du programme peuvent être récupérées sur http://git.dossmann.net/ ou via la commande suivante (à l'aide de l'outil git) :
+
+    git clone http://git.dossmann.net/scripts/asinup.git
+
